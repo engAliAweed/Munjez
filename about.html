@@ -12,6 +12,11 @@
 
     <!--<link href="css/index.css" rel="stylesheet" />-->
     <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        
         body {
             transition: background-color 0.3s, color 0.3s;
             background-color: #e7f1ff;
@@ -37,12 +42,18 @@
             font-family: "Cairo";
             font-weight: 390;
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
     </style>
 
 </head>
-<body class="mt-5 mt-xl-5">
+<body class="mt-5 m-0 mt-xl-5">
     <nav class="navbar navbar-expand-lg bg-primary m-0 fixed-top navbar-dark">
-        <div class="container-fluid">
+        <div class="container">
             <!-- شعار -->
             <a class="navbar-brand mx-2 fs-2 btn btn-primary fw-bold" href="index.html">مُنْجَزٌ</a>
 
