@@ -47,6 +47,9 @@
 }
 
 .service-card {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 200px;
     position: relative;
     border-radius: 8px;
