@@ -42,6 +42,9 @@
             background-color: #e7f1ff;
             color: #0a192f;
         }
+        .orm-control {
+            background-color: #e7f1ff;
+        }
 
         .dark-mode {
             background-color: #021c45;
@@ -157,15 +160,15 @@
         <div class=" col-md-7 col-xl-8  p-5 align-items-center">
             <form id="contactForm">
                 <label for="name" class="form-label">الاسم الكامل</label>
-                <input type="text" id="name" class="form-control" placeholder="أدخل اسمك" required>
+                <input type="text" id="name"  class="form-control" style="direction:rtl;text-align:right;" placeholder="أدخل اسمك" required>
                 <br />
                 <label for="email" class="form-label">البريد الإلكتروني</label>
-                <input type="email" id="email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
+                <input type="email" id="email" class="form-control" style="direction:rtl;text-align:right;" placeholder="أدخل بريدك الإلكتروني" required>
                 <br />
                 <label for="phone" class="form-label">رقم الهاتف</label>
-                <input type="tel" id="phone" class="form-control" placeholder="أدخل رقم هاتفك" required>
+                <input type="tel" id="phone" class="form-control" style="direction:rtl;text-align:right;" placeholder="أدخل رقم هاتفك" required>
                 <br />
-                <label for="subject" class="form-control">موضوع الرسالة</label>
+                <label for="subject" class="form-label">موضوع الرسالة</label>
                 <select id="subject" name="subject" class="form-select" required>
                     <option value="">اختر الموضوع</option>
                     <option value="استفسار">استفسار</option>
@@ -173,8 +176,8 @@
                     <option value="اقتراح">اقتراح</option>
                 </select>
                 <br />
-                <label for="message" class="form-control">نص الرسالة</label>
-                <textarea id="message" class="form-control" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+                <label for="message" class="form-label">نص الرسالة</label>
+                <textarea id="message" class="form-control" rows="4" style="direction:rtl;text-align:right;"  placeholder="اكتب رسالتك هنا..." required></textarea>
                 <br>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary w-25 ">إرسال</button>
@@ -184,14 +187,14 @@
 
 
         <div class=" row align-items-center justify-content-center align-items-center">
-            <div class=" col-10 p-3 ">
-                <ul class="contUl text-primary">
-                    <li><a href="https://t.me/Ali_Aweed"><i class="bi bi-telegram fs-3 p-3"></i> Ali Aweed</a></li>
-                    <li><a href="https://www.facebook.com/share/1ABi7kr7dW/"><i class="bi bi-facebook fs-3 p-3"></i>Ali Aweed</a></li>
-                    <li><a href="https://wa.me/qr/UC3SFZVRNP25M1"> <i class="bi bi-whatsapp fs-3 p-3"></i>Ali Aweed</a></li>
-                    <li><a><i class="bi bi-linkedin fs-3 p-3"></i> Ali Aweed</a></li>
-                    <li><a href="tel:+21809285384xx"><i class="bi bi-telephone-outbound-fill fs-3 p-3"> </i>09285384xx</a> </li>
-                    <li><a href="tel:+21809192077xx"><i class="bi bi-telephone-outbound-fill fs-3 p-3"> </i>09192077xx</a> </li>
+            <div class=" col-12 p-3 m-auto text-center d-flex ">
+                <ul class="contUl text-primary d-flex text-center m-auto g-5">
+                    <li class="m-auto my-2  p-1"><a href="https://t.me/Ali_Aweed"><i class="bi bi-telegram fs-3  m-3"></i> Ali Aweed</a></li>
+                    <li class="m-auto my-2 p-1"><a href="https://www.facebook.com/share/1ABi7kr7dW/"><i class="bi bi-facebook fs-3 m-3 "></i>Ali Aweed</a></li>
+                    <li class="m-auto my-2 p-1"><a href="https://wa.me/qr/UC3SFZVRNP25M1"> <i class="bi bi-whatsapp fs-3 m-3"></i>Ali Aweed</a></li>
+                    <li class="m-auto my-2 p-1"><a><i class="bi bi-linkedin fs-3 p-3"></i> Ali Aweed</a></li>
+                    <li class="m-auto my-2 p-1"><a href="tel:+21809285384xx"><i class="bi bi-telephone-outbound-fill fs-3 m-3"> </i>09285384xx</a> </li>
+                    <li class="m-auto my-2 p-1"><a href="tel:+21809192077xx"><i class="bi bi-telephone-outbound-fill fs-3 m-3"> </i>09192077xx</a> </li>
 
 
                 </ul>
