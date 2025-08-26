@@ -5,6 +5,7 @@ let lilogin = document.getElementById('lilogin');
 let btnexit = document.getElementById('btnexit'); 
 let service = false;
 let bool = false;
+
 let registers = false;
 let pService = {};//كائن لتخزين المستخدم
 let sService = {}; //كائن لتخزين الخدمات  المضافة
@@ -19,17 +20,33 @@ if (localStorage.getItem('service') === 'true') {
 }
 
 //----------------------------------------------------------------------------
+let dark;
+if (localStorage.mode != null) {
+    dark = JSON.parse(localStorage.mode)
 
+} else {
+    dark = false;
+}
 let sun = document.getElementById("sun")
 let moon = document.getElementById("moon")
-function toggleMode() {
-  
 
-    document.body.classList.toggle("dark-mode");
-    sun.classList.toggle('hidden');
-    moon.classList.toggle('hidden');
+if (dark ) {
+    document.body.classList.add("dark-mode");
+    sun.classList.add("hidden");
+    moon.classList.remove("hidden");
+} else {
+    document.body.classList.remove("dark-mode");
+    moon.classList.add("hidden");
+    sun.classList.remove("hidden");
 }
 
+function toggleMode() {
+    document.body.classList.toggle("dark-mode");
+    sun.classList.toggle("hidden");
+    moon.classList.toggle("hidden");
+    dark =document.body.classList.contains("dark-mode") ? true:false;
+    localStorage.setItem("mode", JSON.stringify(dark));
+} 
 
 
 
