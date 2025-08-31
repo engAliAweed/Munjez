@@ -10,7 +10,7 @@ let registers = false;
 let pService = {};//كائن لتخزين المستخدم
 let sService = {}; //كائن لتخزين الخدمات  المضافة
 let reserv = {}; //كائن لتخزين الحجوزات
-
+// لتحديد نوع المستخدم 
 if (localStorage.getItem('registers') === 'true') {
     registers = true;
 }
@@ -20,6 +20,8 @@ if (localStorage.getItem('service') === 'true') {
 }
 
 //----------------------------------------------------------------------------
+// لتحكم في المود 
+
 let dark;
 if (localStorage.mode != null) {
     dark = JSON.parse(localStorage.mode)
@@ -311,7 +313,7 @@ if (localStorage.reservation != null) {
 } else {
     reservation = [];
 }
-
+// لاضافة خدمه
 function addServProv() {
 
     let sName = document.getElementById("sName");
@@ -360,7 +362,7 @@ function addServProv() {
         img: imgs ,
 
     }
-
+    //لتحديد اين تتم الاضافة
     switch (fieldSelect.value) {
         case "برمجة":
             programs.push(sService);
@@ -405,11 +407,11 @@ function clear() {
 }
 
 //--------------------------------------------------------------------------------------
-
+//لاظهار الخدمات المخزنه
 function showService(arr,filer ) {
     let cards = '';
     for (let i = 0; i < arr.length; i++) {
-        if (filer === "الكل") {
+        if (filer === "الكل") {// لاظهار جميع العناصر  
             cards += `
            <div class="card custom-card m-3 p-0    text-center align-items-center" style="width: 20rem;">
   <div class="image-container">
@@ -419,7 +421,7 @@ function showService(arr,filer ) {
     <h4 class="card-title">${arr[i].name}</h4>
     <h6 class="card-subtitle mb-2 text-body-secondary">${arr[i].specializ}</h6>
     <p class="card-text ">${arr[i].Description}</p>
-    <button class="btn btn-outline-primary text-center d-block mx-auto show-offcanvas-btn"
+    <button onclick="showoffcanvas(${i})"  class="btn btn-outline-primary text-center d-block mx-auto show-offcanvas-btn"
                     type="button"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasScrolling"
@@ -429,7 +431,7 @@ function showService(arr,filer ) {
   </div>
 </div>
         `
-        }
+        }// لاظهار العناصر حسب الفلترة 
         if (arr[i].specializ === filer) {
             cards += `
          <div class="card custom-card m-3 p-0    text-center align-items-center" style="width: 20rem;">
@@ -440,7 +442,7 @@ function showService(arr,filer ) {
     <h4 class="card-title">${arr[i].name}</h4>
     <h6 class="card-subtitle mb-2 text-body-secondary">${arr[i].specializ}</h6>
     <p class="card-text">${arr[i].Description}</p>
-    <button class="btn btn-outline-primary text-center d-block mx-auto show-offcanvas-btn"
+    <button onclick="showoffcanvas(${i})" class="btn btn-outline-primary text-center d-block mx-auto show-offcanvas-btn"
                     type="button"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasScrolling"
@@ -459,10 +461,10 @@ function showService(arr,filer ) {
 }
 }
 
-
+//--------------------------------------------------------------------------------
 let arrService = '';
 let rFields = '';
-
+// لتحديد الصفحة المفتوحه لكي يظهر البيانات المناسبه
 document.addEventListener('DOMContentLoaded', function () {
     let filters = document.getElementById("filters");
     hiden(registers, service)
@@ -515,6 +517,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //-----------------------------------------------------
 
 
+// لاضافة الحجوزات
 function addReservation(i) {
     if (registers) {
         reserv = {
@@ -543,7 +546,7 @@ function addReservation(i) {
         }
     }
 }
-
+// لاضافة صفوف الجدول function
 function showReserva(arr) {
     let rTable = '';
     
@@ -571,12 +574,14 @@ function showReserva(arr) {
 
     
 }
+//لتاكيد الحجز في صفحة الحجوزات
 function sure(i) {
     reservation[i].condition = "ثم التاكيد";
     reservation[i].cod = "bg-success";
     showReserva(reservation);
     localStorage.setItem("reservation", JSON.stringify(reservation));
 }
+//  لالغاء الحجز في صفحة الحجوزات
 function cancel(i) {
     reservation[i].condition = "ثم الالغاء";
     reservation[i].cod = "bg-danger";
@@ -585,26 +590,12 @@ function cancel(i) {
 }
 
 //-------------------------------------------------------
+// لاظهار offcanvas
+function showoffcanvas(i) {
+    const item = arrService[i];
+    document.getElementById("offcanvasScrollingLabel").innerText = item.specializ;
 
-document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("show-offcanvas-btn")) {
-        // استخرج اسم المصفوفة و رقم العنصر
-       
-        const index = e.target.getAttribute("data-index");
-
-        //// تأكد أن المصفوفة موجودة في النطاق العام (global)
-        //const dataArray = arrService;
-        //if (!dataArray || !dataArray[index]) {
-        //    console.warn("العنصر غير موجود أو المصفوفة غير معرفة.");
-        //    return;
-        //}
-
-        const item = arrService[index];
-
-        // تحديث العنوان والمحتوى في offcanvas
-        document.getElementById("offcanvasScrollingLabel").innerText = item.specializ;
-
-        document.getElementById("offcanvasContent").innerHTML = `
+    document.getElementById("offcanvasContent").innerHTML = `
         <div class="image-container">
                 <img src="${item.img}" alt="${item.name}" class="img-fluid rounded mt-3" />
            
@@ -640,23 +631,28 @@ document.addEventListener("click", function (e) {
              
 
             </div>
-             <button onclick="addReservation(${index})" class="btn btn-outline-primary px-2 fs-5 d-block mx-auto"> حجز </button>
+             <button onclick="addReservation(${i})" class="btn btn-outline-primary px-2 fs-5 d-block mx-auto"> حجز </button>
 
         
            ` ;
-    }
-});
 
+} 
+
+
+
+//-------------------------------------------------------
+
+// لاظهار البيانات حسب نوع التسجيل او عدم التسجيل 
 function hiden(registers, service) {
     if (registers) {
-        if (service) {
+        if (service) {  //  قام بالتسجيل ك مزود خدمه  
             liaddser.style.display = "inline-block";
             lireser.style.display = "inline-block";
             btnexit.style.display = "inline-block";
             lilogin.style.display = "none";
             liregis.style.display = "none";
 
-        } else {
+        } else { //  قام بالتسجيل ك عميل  
             liaddser.style.display = "none";
             lireser.style.display = "inline-block";
             btnexit.style.display = "inline-block";
@@ -665,7 +661,7 @@ function hiden(registers, service) {
 
         }
 
-
+        //  لم يقوم بالتسجيل 
     } else {
         liaddser.style.display = "none";
         lireser.style.display = "none";
@@ -677,6 +673,9 @@ function hiden(registers, service) {
 
 
 hiden(registers, service);
+
+//-------------------------------------------------------
+//زر الغاء تسجيل الدخول 
 
 btnexit.addEventListener('click', () => {
     localStorage.removeItem('registers');
