@@ -687,6 +687,8 @@ hiden(registers, service);
 btnexit.addEventListener('click', () => {
     localStorage.removeItem('registers');
     localStorage.removeItem('service');
+    dark = false;
+    localStorage.setItem("mode", JSON.stringify(dark));
     window.location.href = "index.html";
 });
 
