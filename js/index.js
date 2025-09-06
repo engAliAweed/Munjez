@@ -408,18 +408,20 @@ function clear() {
 
 //--------------------------------------------------------------------------------------
 //لاظهار الخدمات المخزنه
-function showService(arr,filer ) {
+function showService(arr, filer) {
+   
     let cards = '';
     for (let i = 0; i < arr.length; i++) {
-        if (filer === "الكل") {// لاظهار جميع العناصر  
-            cards += `
-           <div class="card custom-card m-3 p-0    text-center align-items-center" style="width: 20rem;">
+       
+            if (filer === "الكل") {// لاظهار جميع العناصر
+                cards += `
+           <div class="card dark-card-mode  m-3 p-0    text-center align-items-center" style="width: 20rem;">
   <div class="image-container">
     <img src="${arr[i].img}" class="card-img-top" />
   </div>
   <div class="card-body">
     <h4 class="card-title">${arr[i].name}</h4>
-    <h6 class="card-subtitle mb-2 text-body-secondary">${arr[i].specializ}</h6>
+    <h6 class="card-subtitle mb-2 txtc">${arr[i].specializ}</h6>
     <p class="card-text ">${arr[i].Description}</p>
     <button onclick="showoffcanvas(${i})"  class="btn btn-outline-primary text-center d-block mx-auto show-offcanvas-btn"
                     type="button"
@@ -431,16 +433,16 @@ function showService(arr,filer ) {
   </div>
 </div>
         `
-        }// لاظهار العناصر حسب الفلترة 
-        if (arr[i].specializ === filer) {
-            cards += `
-         <div class="card custom-card m-3 p-0    text-center align-items-center" style="width: 20rem;">
+            }// لاظهار العناصر حسب الفلترة
+            if (arr[i].specializ === filer) {
+                cards += `
+         <div class="card dark-card-mode  m-3 p-0    text-center align-items-center" style="width: 20rem;">
   <div class="image-container">
     <img src="${arr[i].img}" class="card-img-top" />
   </div>
-  <div class="card-body">
+  <div class="card-body  ">
     <h4 class="card-title">${arr[i].name}</h4>
-    <h6 class="card-subtitle mb-2 text-body-secondary">${arr[i].specializ}</h6>
+    <h6 class="card-subtitle mb-2 txtc ">${arr[i].specializ}</h6>
     <p class="card-text">${arr[i].Description}</p>
     <button onclick="showoffcanvas(${i})" class="btn btn-outline-primary text-center d-block mx-auto show-offcanvas-btn"
                     type="button"
@@ -450,16 +452,21 @@ function showService(arr,filer ) {
               عرض
             </button>
   </div>
-</div>
+  </div>
+
         `
 
-        }
-      
+            }
+
+       
     }
+
+    
     if (bool) {
-    document.getElementById("servContainers").innerHTML = cards;
+        document.getElementById("servContainers").innerHTML = cards;
+    }
 }
-}
+
 
 //--------------------------------------------------------------------------------
 let arrService = '';
